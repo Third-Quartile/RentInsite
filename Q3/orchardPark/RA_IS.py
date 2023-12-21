@@ -8,7 +8,7 @@ from fuzzywuzzy import process
 import pyodbc
 
 # Constants
-excel_path = r"Income_Statement_40501_Accrual.xlsx"
+excel_path = "C:/xampp/htdocs/RentInsite/Q3/orchardPark/Income_Statement_40501_Accrual.xlsx"
 sheet_name = "Report1"
 EXCLUDE_VALUES = ['50000', '50001', '50010', '50012', '50039', '50199', '53000',
                   '53499', '57999', '60001', '60010', '60499', '60600', '60699',
@@ -46,12 +46,12 @@ def get_matching_id(deal_name, deal_dict):
 def main():
     # database connection variables
     servers = [
-        # {
-        #     'server_name': "q3solutions-dev.database.windows.net",
-        #     'database_name': "PropertyManager-dev",
-        #     'username': "q3solutions-dev",
-        #     'password': "Q3testMcQ"
-        # },
+        #{
+        #    'server_name': "q3solutions-dev.database.windows.net",
+        #    'database_name': "PropertyManager-dev",
+        #    'username': "q3solutions-dev",
+        #    'password': "Q3testMcQ"
+        #},
         {
             'server_name': "q3solutions.database.windows.net",
             'database_name': "PropertyManager",

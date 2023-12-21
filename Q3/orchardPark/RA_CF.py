@@ -127,12 +127,6 @@ def process_data(input_path):
     sheet_name = "Report1"
     df_head, end_of_month_str = load_excel_data(input_path, sheet_name)
     servers = [
-        # {
-        #     'server_name': "q3solutions-dev.database.windows.net",
-        #     'database_name': "PropertyManager-dev",
-        #     'username': "q3solutions-dev",
-        #     'password': "Q3testMcQ"
-        # },
         {
             'server_name': "q3solutions.database.windows.net",
             'database_name': "PropertyManager",
@@ -150,7 +144,13 @@ def process_data(input_path):
             'database_name': "PropertyManager",
             'username': "CloudSAd02d20b4",
             'password': "C0mm1t4ppr0v3d!"
-        }
+        },
+        #{
+        #    'server_name': "q3solutions-dev.database.windows.net",
+        #    'database_name': "PropertyManager-dev",
+        #    'username': "q3solutions-dev",
+        #    'password': "Q3testMcQ"
+        #},
     ]
     for server_params in servers:
         try:
@@ -161,6 +161,7 @@ def process_data(input_path):
 
 
 if __name__ == "__main__":
-    input_path = r"Cash_Flow_40501_Accrual.xlsx"
+    #input_path = r"Cash_Flow_40501_Accrual.xlsx"
+    input_path = "C:/xampp/htdocs/RentInsite/Q3/orchardPark/Cash_Flow_40501_Accrual.xlsx"
     process_data(input_path)
 

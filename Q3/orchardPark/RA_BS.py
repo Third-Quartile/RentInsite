@@ -101,7 +101,8 @@ def set_debits_and_credits(df):
 
 
 def main():
-    excel_path = r"Balance_Sheet_PeriodChange_40501_Accrual.xlsx"
+    #excel_path = r"Balance_Sheet_PeriodChange_40501_Accrual.xlsx"
+    excel_path = "C:/xampp/htdocs/RentInsite/Q3/orchardPark/Balance_Sheet_PeriodChange_40501_Accrual.xlsx"
     sheet_name = "Report1"
 
     servers = [
@@ -128,11 +129,9 @@ def main():
             'database_name': "PropertyManager",
             'username': "CloudSAd02d20b4",
             'password': "C0mm1t4ppr0v3d!"
-
         }
-
     ]
-
+    
     for server_params in servers:
         try:
             # Using urllib.parse.quote_plus to create connection parameter
