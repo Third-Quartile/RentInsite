@@ -21,6 +21,12 @@ import tzdata
 
 servers = [
     {
+        'server_name': "q3solutions-dev.database.windows.net",
+        'database_name': "PropertyManager-dev",
+        'username': "q3solutions-dev",
+        'password': "Q3testMcQ"
+    },
+    """{
         'server_name': "q3solutions.database.windows.net",
         'database_name': "PropertyManager",
         'username': "burtonguster",
@@ -37,11 +43,13 @@ servers = [
         'database_name': "PropertyManager",
         'username': "CloudSAd02d20b4",
         'password': "C0mm1t4ppr0v3d!"
-    }
+    }"""
 ]
 # Set up the Excel file path
 # file_path = r'C:\Users\rdsku\Aberdeen Capital\Aberdeen Capital - Documents\Underwriting Templates\GreenIQ\RentRoll.xlsx'
-file_path = "Cirrus_Rent_Roll_with_Lease_Charges_40501.xlsx"
+#file_path = "Cirrus_Rent_Roll_with_Lease_Charges_40501.xlsx"
+file_path = "C:/xampp/htdocs/RentInsite/Q3/orchardPark/ceva_americana-main/Rent_Roll_40501.xlsx"
+
 # sheet_name = 'RentRoll'
 
 def read_file(file_name):
