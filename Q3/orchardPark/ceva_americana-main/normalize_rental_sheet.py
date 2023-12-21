@@ -13,13 +13,20 @@ import six
 import tzdata
 
 #Set up the database connection details
-server_name = 'q3solutions.database.windows.net'
-database_name = 'PropertyManager'
-username = 'burtonguster'
-password = 'heardaboutplut0!'
+server_name = 'q3solutions-dev.database.windows.net'
+database_name = 'PropertyManager-dev'
+username = 'q3solutions-dev'
+password = 'Q3testMcQ'
+
+#server_name = 'q3solutions.database.windows.net'
+#database_name = 'PropertyManager'
+#username = 'burtonguster'
+#password = 'heardaboutplut0!'
 
 # Set up the Excel file path
-file_path = r'C:\Users\rdsku\Aberdeen Capital\Aberdeen Capital - Documents\Underwriting Templates\GreenIQ\RentRoll.xlsx'
+#file_path = r'C:\Users\rdsku\Aberdeen Capital\Aberdeen Capital - Documents\Underwriting Templates\GreenIQ\RentRoll.xlsx'
+file_path = "C:/xampp/htdocs/RentInsite/Q3/orchardPark/ceva_americana-main/Rent_Roll_40501.xlsx"
+
 sheet_name = 'RentRoll'
 
 # Create the connection string
