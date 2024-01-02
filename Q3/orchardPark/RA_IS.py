@@ -7,7 +7,6 @@ import urllib
 from fuzzywuzzy import process
 import pyodbc
 
-#Prueba push
 # Constants
 excel_path = "C:/xampp/htdocs/RentInsite/Q3/orchardPark/Income_Statement_40501_Accrual.xlsx"
 sheet_name = "Report1"
@@ -132,6 +131,41 @@ def main():
         df_is_level4['Level3ID'] = df_is_level4['Level3ID'].astype(str)
         df_is_level3['Level2ID'] = df_is_level3['Level2ID'].astype(str)
         df_is_level2['Level1ID'] = df_is_level2['Level1ID'].astype(str)
+
+        """Add logic to detect the codes that need to be added"""
+        # Create a list with the ID's from the IS_Level4 table
+        stored_codes = list(df_is_level4['ID'].drop_duplicates())
+
+        # Create a dict and list with the existing codes in the xlsx file
+        income_statment = df_is[['Codes','CodeName']]
+        income_statment_dict = income_statment.set_index('Codes')['CodeName'].to_dict()
+        inc_stm_codes = list(income_statment['Codes'].drop_duplicates())
+
+        # Create lists with the codes to add 
+        codes_to_add = []
+        codes_name = []
+
+        for code in inc_stm_codes:
+            if code not in stored_codes:
+                codes_to_add.append(code)
+                key = income_statment_dict[code]
+                codes_name.append(key)
+
+        if len(codes_to_add) > 0:        
+            print("it's necessary to add the following codes: ",*codes_to_add)
+        else:
+            print("it's not necessary add new codes")    
+
+        # Add the Level3 code:
+        data = {
+                'ID': inc_stm_codes,
+                'Level3ID': ['61010', '62400', '62400', '80300']
+                }
+
+        # Create a df for insert the new codes
+        codes_to_add_df = pd.DataFrame(data)
+        
+        """ Continue with the process """
 
         # Merge dataframes
         df_is = df_is.merge(df_is_level4, how='left', left_on='Codes', right_on='ID')
