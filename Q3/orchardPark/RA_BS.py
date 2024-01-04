@@ -102,7 +102,7 @@ def set_debits_and_credits(df):
 
 def main():
     #excel_path = r"Balance_Sheet_PeriodChange_40501_Accrual.xlsx"
-    excel_path = "C:/xampp/htdocs/RentInsite/Q3/orchardPark/Balance_Sheet_PeriodChange_40501_Accrual.xlsx"
+    excel_path = "Balance_Sheet_PeriodChange_40501_Accrual.xlsx"
     sheet_name = "Report1"
 
     servers = [
@@ -111,7 +111,7 @@ def main():
         #     'database_name': "PropertyManager-dev",
         #     'username': "q3solutions-dev",
         #     'password': "Q3testMcQ"
-        # },
+        # }
         {
             'server_name': "q3solutions.database.windows.net",
             'database_name': "PropertyManager",
@@ -193,6 +193,9 @@ def main():
 
             # Reorder the columns
             df_norm = df_norm[['DealID', 'Date', 'Balance_Type', 'Codes', 'CodeName', 'Amount']]
+
+            # Create the column AbsAmount
+            df_norm['AbsAmount'] = df_norm['Amount'].abs()            
 
             # Insert data into an SQL table (replace 'your_table_name' with the actual table name)
             table_name = 'RA_BalanceSheet'
