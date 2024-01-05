@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv('.env')
 
-excel_file_name = os.getenv('excel_file')
+excel_file_name = 'C:/xampp/htdocs/RentInsite/Q3/vitalHousing/ceva_NOI_normalizer-main/11.2023 Arlington Park T12.xlsx'
 output_sheet_name = "transformed_data"
 
 
@@ -19,7 +19,7 @@ def parse_date(date_string):
 try:
     conn = utils.connect_to_database()
     cursor = conn.cursor()
-    deal_name = " ".join(excel_file_name.split(" ")[:-2])
+    deal_name = "Arlington Park Villas"
     cursor.execute(f"SELECT DealID FROM UW_Deals WHERE DealName='{deal_name}'")
     results = cursor.fetchone()
 

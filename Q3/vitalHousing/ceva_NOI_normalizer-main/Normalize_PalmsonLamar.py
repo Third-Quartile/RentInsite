@@ -5,7 +5,7 @@ import os
 load_dotenv('.env')
 
 
-excel_file_name = os.getenv('excel_file')
+excel_file_name = 'C:/xampp/htdocs/RentInsite/Q3/vitalHousing/ceva_NOI_normalizer-main/11.2023 Palms on Lamar T12.xlsx'
 output_sheet_name = "transformed_data"
 
 
@@ -16,9 +16,11 @@ def getcodename(x):
         return x
 
 try:
+    
     conn = utils.connect_to_database()
     cursor = conn.cursor()
-    deal_name = " ".join(excel_file_name.split(" ")[:-2])
+    deal_name = "Palms on Lamar"
+    print(f"deal_name: {deal_name}, type: {type(deal_name)}")
     cursor.execute(f"SELECT DealID FROM UW_Deals WHERE DealName='{deal_name}'")
     results = cursor.fetchone()
 
@@ -28,8 +30,7 @@ try:
 
         df = pd.read_excel(excel_file_name)
         
-        index = df[(df.iloc[:, 0].str.strip() == "NET OPERATING INCOME") |
-                                (df.iloc[:, 0].str.strip() == "Net Operating Income")].index
+        index = df[(df.iloc[:, 0].str.strip() == "NET OPERATING INCOME") | (df.iloc[:, 0].str.strip() == "Net Operating Income")].index
         
         df1 = df.iloc[12:index[0], :13]
 
@@ -37,7 +38,8 @@ try:
 
         df1.columns.values[0] = "CodeName"
 
-        df1["CodeName"] = df1.apply(lambda row: getcodename(row["CodeName"]) if 'Total' not in row["CodeName"] else row["CodeName"], axis=1)
+        #df1["CodeName"] = df1.apply(lambda row: getcodename(row["CodeName"]) if 'Total' not in row["CodeName"] else row["CodeName"], axis=1)
+        df1["CodeName"] = df1.apply(lambda row: getcodename(row["CodeName"]) if isinstance(row["CodeName"], str) and 'Total' not in row["CodeName"] else row["CodeName"], axis=1)
 
         df1 = df1.dropna()
 
@@ -49,7 +51,9 @@ try:
 
         melted_df["DealID"] = deal_id
 
-        df_filter_unnecesary_rows = melted_df[~melted_df['CodeName'].str.startswith(' ')]
+        #df_filter_unnecesary_rows = melted_df[~melted_df['CodeName'].str.startswith(' ')]
+        df_filter_unnecesary_rows = melted_df[~melted_df['CodeName'].astype(str).str.startswith(' ')]
+
 
         df_out = df_filter_unnecesary_rows[["DealID", "Date", "CodeName", "Amount"]]
 
@@ -57,7 +61,9 @@ try:
 
         df_out_excel = df_out_excel.rename(columns={'Amount': 'Period_to_Date'})
 
-        df_out_excel['CodeName'] = ' ' + df_out_excel['CodeName']
+        #df_out_excel['CodeName'] = ' ' + df_out_excel['CodeName']
+        df_out_excel['CodeName'] = ' ' + df_out_excel['CodeName'].astype(str)
+
 
         utils.load_data_in_database(conn, deal_id, df_out)
 

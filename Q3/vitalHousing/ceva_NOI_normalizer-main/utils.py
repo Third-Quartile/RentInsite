@@ -5,12 +5,11 @@ from dotenv import load_dotenv
 load_dotenv('.env')
 
 def connect_to_database():
-    server = os.getenv('server')
-    database = os.getenv('database')
-    username =  os.getenv('username')
-    password = os.getenv('password')
+    server = "q3solutions-dev.database.windows.net"
+    database = "PropertyManager-dev"
+    username =  "q3solutions-dev"
+    password = "Q3testMcQ"
     driver = '{ODBC Driver 17 for SQL Server}'
-
     conn = pyodbc.connect(f'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}')
     
     return conn
