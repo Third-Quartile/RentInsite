@@ -152,13 +152,13 @@ def main():
                 codes_name.append(key)
 
         if len(codes_to_add) > 0:        
-            print("it's necessary to add the following codes: ",*codes_to_add)
+            print("it's necessary to add the following codes: ",*codes_name)
         else:
             print("it's not necessary add new codes")    
 
         # Add the Level3 code:
         data = {
-                'ID': inc_stm_codes,
+                'ID': codes_to_add,
                 'Level3ID': ['61010', '62400', '62400', '80300']
                 }
 
