@@ -4,7 +4,7 @@ import dateutil
 import pandas as pd
 import os
 import openpyxl
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from fuzzywuzzy import process
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import cursor
@@ -161,8 +161,9 @@ def normalize_charge_code(df, column_name):
 sheet_name = 'transformed_data'
 
 # These two lines are for loading the name of the target workbook
-load_dotenv()
-file_name = os.getenv("file")
+#load_dotenv()
+#file_name = os.getenv("file")
+file_name = "C:/xampp/htdocs/RentInsite/Q3/orchardPark/ceva_americana-main/Rent_Roll_40501.xlsx"
 
 if not file_name:
     raise ValueError('Check that you entered your file name correctly in the .env file')
