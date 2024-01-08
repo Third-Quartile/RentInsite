@@ -20,6 +20,12 @@ import tzdata
 
 
 servers = [
+    # {
+    #     'server_name': 'q3solutions-dev.database.windows.net',
+    #     'database_name': 'PropertyManager-dev',
+    #     'username': 'q3solutions-dev',
+    #     'password': 'Q3testMcQ'
+    # }
     {
         'server_name': "q3solutions.database.windows.net",
         'database_name': "PropertyManager",
